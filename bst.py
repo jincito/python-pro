@@ -59,7 +59,7 @@ def deleteFromBst(root, value):
 
 
 bst = createBst()
-printTree(bst, 0)
+printTree(bst)
 print('-----------')
-insertIntoBst(bst, 22)
-printTree(bst, 0)
+deleteFromBst(bst, 13)
+printTree(bst)
