@@ -1,16 +1,28 @@
 class TreeNode:
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, key):
         self.left = None
         self.right = None
+        self.val = key
 
 
-# Helper to print a binary tree
-def printTree(node, level=0):
+# Helper to print a binary tree.
+def printBinaryTree(node, level=0):
     if node is not None:
-        printTree(node.right, level + 1)
-        print(' ' * 4 * level + '->' + str(node.value))
-        printTree(node.left, level + 1)
+        printBinaryTree(node.right, level + 1)
+        print(' ' * 4 * level + '-> ' + str(node.val))
+        printBinaryTree(node.left, level + 1)
+
+
+root = TreeNode(50)
+root.left = TreeNode(30)
+root.right = TreeNode(70)
+root.left.left = TreeNode(20)
+root.left.right = TreeNode(40)
+root.right.left = TreeNode(60)
+root.right.right = TreeNode(80)
+print("Printing binary tree:")
+printBinaryTree(root)
+print("\n")
 
 
 # Helper to create a BST
@@ -58,8 +70,32 @@ def deleteFromBst(root, value):
     return root
 
 
-bst = createBst()
-printTree(bst)
-print('-----------')
-deleteFromBst(bst, 13)
-printTree(bst)
+# Searching in a BST
+# Input:
+#  - root: current TreeNode or None
+#  - key: target value to be searched for
+# Output: the TreeNode with the target value or None if the node doesn't exist
+def search(root, key):
+    if not root:
+        print(f"Node is empty - did not find target: {key}. Returning None.")
+        return None
+    print(f"At node with value: {root.val}")
+    if root.val == key:
+        print(f"\t...found node with target: {key}. Returning node.")
+        return root
+    elif root.val > key:
+        print(f"\t... {root.val} > target {key}. Moving left...")
+        return search(root.left, key)
+    else:
+        print(f"\t... {root.val} < target {key}. Moving right...")
+        return search(root.right, key)
+
+
+# Example search
+target = 40
+print(f"Searching for target: {target}")
+found_node = search(root, target)
+if found_node:
+    print(f"Target {target} found in the tree.\n")
+else:
+    print(f"Target {target} not found in the tree.\n")
