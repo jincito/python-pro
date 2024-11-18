@@ -1,5 +1,6 @@
 import math
 
+
 def is_prime(n):
     try:
         n = int(n)  # Ensures the value passed is an integer
@@ -20,9 +21,10 @@ def is_prime(n):
             return False
     return True
 
+
 if __name__ == "__main__":
     while True:
-        number = input("Enter a number to check if it's prime (or 'q' to quit): ")
+        number = input("Enter a number to check if it's prime ('q' to quit): ")
         if number.lower() == 'q':
             print("Exiting...")
             break  # Exit the loop if the user enters 'q'
@@ -31,4 +33,3 @@ if __name__ == "__main__":
             print(f"{number} is a prime number\n")
         else:
             print(f"{number} is not a prime number\n")
-
